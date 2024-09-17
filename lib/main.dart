@@ -4,7 +4,9 @@ import 'firebase_options.dart';
 import 'pages/wrapper.dart';
 
 void main() async {
+  // waits for widgets to load
   WidgetsFlutterBinding.ensureInitialized();
+  // initializes firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
