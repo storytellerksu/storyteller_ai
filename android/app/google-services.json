@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "915397074830",
+    "project_id": "storytellerai-swag",
+    "storage_bucket": "storytellerai-swag.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915397074830:android:6e1663f8a4de997cc68edf",
+        "android_client_info": {
+          "package_name": "com.storytellerai.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUMKKW89x1ClEr_SuGG6oqH_BwR7iP5WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
