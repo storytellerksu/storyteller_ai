@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:storytellerai/pages/auth/login_page.dart';
 import 'package:storytellerai/services/auth.dart';
 
 class Registration extends StatefulWidget {
@@ -16,22 +17,25 @@ class _RegistrationState extends State<Registration> {
 
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(100, 181, 246, 1),
-        elevation: 0,
-        title: Text("Create Account"),
-      ),
       body: Container(
         padding: EdgeInsets.all(50),
         child: Form(
           key: globalKey,
           child: Column(
             children: [
+              Text(
+                "SIGN UP",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                ),
+              ),
               TextFormField(
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -66,14 +70,51 @@ class _RegistrationState extends State<Registration> {
               ElevatedButton(
                   onPressed: () async {
                     if (globalKey.currentState!.validate()) {
-                      print(email);
-                      print(password);
+                      dynamic result =
+                          await auth.emailRegistration(email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = "ERROR";
+                        });
+                      } else if (result == 1) {
+                        setState(() {
+                          error = "Email Already in Use";
+                        });
+                      } else if (result == 2) {
+                        setState(() {
+                          error = "Invalid Email Format";
+                        });
+                      } else {
+                        setState(() {
+                          error = "";
+                          Navigator.pop(context);
+                        });
+                      }
                     }
                   },
                   child: Text("Create Account")),
               SizedBox(
                 height: 20,
               ),
+              Text(
+                error,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 15,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text("Already Have an Account?"),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  },
+                  child: Text("Log In")),
             ],
           ),
         ),
