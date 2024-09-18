@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         catchError: (_, __) {},
         initialData: null,
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: Wrapper(),
         ),
       ),
