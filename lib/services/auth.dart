@@ -66,6 +66,7 @@ class AuthorizationService {
   //sign out
   Future logOut() async {
     try {
+      print("signing out");
       return await authKey.signOut();
     } catch (e) {
       print(e.toString());

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/auth/login_page.dart';
+import 'package:storytellerai/pages/wrapper.dart';
 import 'package:storytellerai/services/auth.dart';
 
 class Registration extends StatefulWidget {
@@ -85,10 +86,12 @@ class _RegistrationState extends State<Registration> {
                           error = "Invalid Email Format";
                         });
                       } else {
-                        setState(() {
-                          error = "";
-                          Navigator.pop(context);
-                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Wrapper(),
+                          ),
+                        );
                       }
                     }
                   },

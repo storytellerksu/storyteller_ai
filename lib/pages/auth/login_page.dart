@@ -3,7 +3,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:storytellerai/pages/auth/authorization_menu.dart';
 import 'package:storytellerai/pages/auth/registration.dart';
+import 'package:storytellerai/pages/wrapper.dart';
 import 'package:storytellerai/services/auth.dart';
 
 class Login extends StatefulWidget {
@@ -32,7 +34,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Text(
-                "SIGN UP",
+                "LOG IN",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
@@ -79,10 +81,12 @@ class _LoginState extends State<Login> {
                           error = "ERROR bruh";
                         });
                       } else {
-                        setState(() {
-                          error = "";
-                          Navigator.pop(context);
-                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Wrapper(),
+                          ),
+                        );
                       }
                     }
                   },
@@ -105,6 +109,12 @@ class _LoginState extends State<Login> {
                   } else {
                     print("Logging In");
                     print(result.uid);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Wrapper(),
+                      ),
+                    );
                   }
                 },
                 child: Text("Sign-in as Guest"),
