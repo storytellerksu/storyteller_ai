@@ -8,7 +8,9 @@ class Menu_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("MEnu SCREEN", style: TextStyle(fontSize: 100)),
+      backgroundColor: const Color.fromARGB(255, 174, 233, 227),
+      body: Text("MEnu SCREEN with top stories?",
+          style: TextStyle(fontSize: 100)),
     );
   }
 }

@@ -8,7 +8,16 @@ class Story_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Story Page", style: TextStyle(fontSize: 100)),
+      backgroundColor: Color.fromARGB(255, 159, 186, 188),
+      body: Column(
+        children: [
+          SizedBox(height: 30),
+          Image.asset(
+            "assets/storypage_mock.png",
+          ),
+          Text("fake page btw"),
+        ],
+      ),
     );
   }
 }
