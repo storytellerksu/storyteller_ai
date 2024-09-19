@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:storytellerai/pages/auth/authorization_menu.dart';
 import 'package:storytellerai/pages/auth/registration.dart';
 import 'package:storytellerai/pages/wrapper.dart';
 import 'package:storytellerai/services/auth.dart';

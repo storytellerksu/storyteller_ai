@@ -1,7 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/auth/authorization_menu.dart';
-import 'package:storytellerai/pages/auth/login_page.dart';
-import 'package:storytellerai/pages/auth/registration.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({super.key});

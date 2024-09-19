@@ -6,9 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:storytellerai/services/myUser.dart';
 import 'firebase_options.dart';
 import 'pages/wrapper.dart';
-import 'package:provider/provider.dart';
 import 'package:storytellerai/services/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   // waits for widgets to load
@@ -29,7 +27,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: StreamProvider<myUser?>.value(
         value: AuthorizationService().user,
-        catchError: (_, __) {},
+        catchError: (_, __) {
+          return null;
+        },
         initialData: null,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
