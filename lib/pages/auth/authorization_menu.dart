@@ -14,7 +14,12 @@ class AuthorizationMenu extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Placeholder(),
+            Image.asset(
+              "assets/storylady.jpeg",
+              // blends image color if needed
+              //color: Colors.blue[100],
+              //colorBlendMode: BlendMode.multiply,
+            ),
             Text(
               "StoryTeller AI",
               style: TextStyle(
