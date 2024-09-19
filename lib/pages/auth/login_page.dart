@@ -28,11 +28,12 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Container(
-        padding: EdgeInsets.all(50),
+        padding: EdgeInsets.all(40),
         child: Form(
           key: globalKey,
           child: Column(
             children: [
+              Image.asset("assets/librarybooks.jpeg"),
               Text(
                 "LOG IN",
                 style: TextStyle(

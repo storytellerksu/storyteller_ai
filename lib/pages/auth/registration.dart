@@ -25,11 +25,12 @@ class _RegistrationState extends State<Registration> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Container(
-        padding: EdgeInsets.all(50),
+        padding: EdgeInsets.all(40),
         child: Form(
           key: globalKey,
           child: Column(
             children: [
+              Image.asset("assets/placehold.jpeg"),
               Text(
                 "SIGN UP",
                 style: TextStyle(
@@ -49,9 +50,7 @@ class _RegistrationState extends State<Registration> {
                   email = value;
                 },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               TextFormField(
                 validator: (value) {
                   if (value!.length < 6) {
@@ -65,9 +64,7 @@ class _RegistrationState extends State<Registration> {
                   password = value;
                 },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () async {
                     if (globalKey.currentState!.validate()) {
@@ -96,9 +93,7 @@ class _RegistrationState extends State<Registration> {
                     }
                   },
                   child: Text("Create Account")),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               Text(
                 error,
                 style: TextStyle(
@@ -106,8 +101,10 @@ class _RegistrationState extends State<Registration> {
                   fontSize: 15,
                 ),
               ),
-              SizedBox(height: 20),
-              Text("Already Have an Account?"),
+              SizedBox(height: 10),
+              Text(
+                "Already Have an Account?",
+              ),
               ElevatedButton(
                   onPressed: () {
                     Navigator.push(

@@ -12,45 +12,48 @@ class AuthorizationMenu extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/storylady.jpeg",
-              // blends image color if needed
-              //color: Colors.blue[100],
-              //colorBlendMode: BlendMode.multiply,
-            ),
-            Text(
-              "StoryTeller AI",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                  color: Colors.white),
-            ),
-            Text("Description of the App"),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Login(),
-                  ),
-                );
-              },
-              child: Text("LOGIN"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Registration(),
-                  ),
-                );
-              },
-              child: Text("SIGN UP"),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(40),
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/storylady.jpeg",
+                // code below blends image color if it looks good?
+                //color: Colors.blue[100],
+                //colorBlendMode: BlendMode.multiply,
+              ),
+              Text(
+                "StoryTeller AI",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Colors.white),
+              ),
+              Text("Description of the App"),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ),
+                  );
+                },
+                child: Text("LOGIN"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Registration(),
+                    ),
+                  );
+                },
+                child: Text("SIGN UP"),
+              ),
+            ],
+          ),
         ),
       ),
     );
