@@ -54,7 +54,7 @@ class _RegistrationState extends State<Registration> {
               TextFormField(
                 validator: (value) {
                   if (value!.length < 6) {
-                    return "Enter a Password Longer than 6 Characters";
+                    return "Password Minimum 6 Characters";
                   } else {
                     return null;
                   }
@@ -94,17 +94,17 @@ class _RegistrationState extends State<Registration> {
                   },
                   child: Text("Create Account")),
               SizedBox(height: 10),
-              Text(
-                error,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 15,
+              if (error.isNotEmpty)
+                Text(
+                  error,
+                  style: TextStyle(
+                    color: Colors.red[700],
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
               SizedBox(height: 10),
-              Text(
-                "Already Have an Account?",
-              ),
+              Text("Already Have an Account?"),
               ElevatedButton(
                   onPressed: () {
                     Navigator.push(
