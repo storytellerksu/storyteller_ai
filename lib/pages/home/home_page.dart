@@ -47,6 +47,9 @@ class _Home_PageState extends State<Home_Page> {
         ],
       ),*/
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.blue[900],
+        unselectedItemColor: Colors.blue[600],
+        backgroundColor: Colors.blue[50],
         onTap: changePage,
         currentIndex: currentPage,
         items: [

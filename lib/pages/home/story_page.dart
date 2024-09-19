@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class Story_Page extends StatelessWidget {
@@ -5,6 +7,8 @@ class Story_Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Text("Story Page", style: TextStyle(fontSize: 100)),
+    );
   }
 }
