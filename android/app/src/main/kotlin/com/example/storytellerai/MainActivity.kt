@@ -1,4 +1,4 @@
-package com.example.storytellerai
+package com.storytellerai.app
 
 import io.flutter.embedding.android.FlutterActivity
 
