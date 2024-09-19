@@ -88,13 +88,16 @@ class _LoginState extends State<Login> {
                     }
                   },
                   child: Text("Sign In")),
-              Text(
-                error,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 15,
+              SizedBox(height: 10),
+              if (error.isNotEmpty)
+                Text(
+                  error,
+                  style: TextStyle(
+                    color: Colors.red[700],
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () async {
