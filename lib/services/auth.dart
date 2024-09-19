@@ -55,9 +55,13 @@ class AuthorizationService {
           email: email, password: password);
       User user = result.user!;
       return userIDFromUser(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-credential") {
+        return 1;
+      } else {
+        print(e.toString());
+        return null;
+      }
     }
   }
 

@@ -9,54 +9,57 @@ class AuthorizationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(40),
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/storylady.jpeg",
-              ),
-              Text(
-                "StoryTeller AI",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40,
-                    color: Colors.white),
-              ),
-              SizedBox(height: 10),
-              Text("Description of the App"),
-              Text("Description of the App"),
-              Text("Description of the App"),
-              Text("Description of the App"),
-              Text("Description of the App"),
-              Text("Description of the App"),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Login(),
-                    ),
-                  );
-                },
-                child: Text("LOGIN"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Registration(),
-                    ),
-                  );
-                },
-                child: Text("SIGN UP"),
-              ),
-            ],
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: Colors.blue,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(40),
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/storylady.jpeg",
+                ),
+                Text(
+                  "StoryTeller AI",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
+                      color: Colors.white),
+                ),
+                SizedBox(height: 10),
+                Text("Description of the App"),
+                Text("Description of the App"),
+                Text("Description of the App"),
+                Text("Description of the App"),
+                Text("Description of the App"),
+                Text("Description of the App"),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  },
+                  child: Text("LOGIN"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Registration(),
+                      ),
+                    );
+                  },
+                  child: Text("SIGN UP"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

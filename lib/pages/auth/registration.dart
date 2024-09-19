@@ -22,100 +22,103 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Container(
-        padding: EdgeInsets.all(40),
-        child: Form(
-          key: globalKey,
-          child: Column(
-            children: [
-              Image.asset("assets/placehold.jpeg"),
-              Text(
-                "SIGN UP",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 50,
-                ),
-              ),
-              TextFormField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter An Email";
-                  } else {
-                    return null;
-                  }
-                },
-                onChanged: (value) {
-                  email = value;
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                validator: (value) {
-                  if (value!.length < 6) {
-                    return "Password Minimum 6 Characters";
-                  } else {
-                    return null;
-                  }
-                },
-                obscureText: true,
-                onChanged: (value) {
-                  password = value;
-                },
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                  onPressed: () async {
-                    if (globalKey.currentState!.validate()) {
-                      dynamic result =
-                          await auth.emailRegistration(email, password);
-                      if (result == null) {
-                        setState(() {
-                          error = "ERROR";
-                        });
-                      } else if (result == 1) {
-                        setState(() {
-                          error = "Email Already in Use";
-                        });
-                      } else if (result == 2) {
-                        setState(() {
-                          error = "Invalid Email Format";
-                        });
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Wrapper(),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                  child: Text("Create Account")),
-              SizedBox(height: 10),
-              if (error.isNotEmpty)
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: Colors.blue,
+        body: Container(
+          padding: EdgeInsets.all(40),
+          child: Form(
+            key: globalKey,
+            child: Column(
+              children: [
+                Image.asset("assets/placehold.jpeg"),
                 Text(
-                  error,
+                  "SIGN UP",
                   style: TextStyle(
-                    color: Colors.red[700],
-                    fontSize: 15,
                     fontWeight: FontWeight.bold,
+                    fontSize: 50,
                   ),
                 ),
-              SizedBox(height: 10),
-              Text("Already Have an Account?"),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
-                      ),
-                    );
+                TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Enter An Email";
+                    } else {
+                      return null;
+                    }
                   },
-                  child: Text("Log In")),
-            ],
+                  onChanged: (value) {
+                    email = value;
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  validator: (value) {
+                    if (value!.length < 6) {
+                      return "Password Minimum 6 Characters";
+                    } else {
+                      return null;
+                    }
+                  },
+                  obscureText: true,
+                  onChanged: (value) {
+                    password = value;
+                  },
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                    onPressed: () async {
+                      if (globalKey.currentState!.validate()) {
+                        dynamic result =
+                            await auth.emailRegistration(email, password);
+                        if (result == null) {
+                          setState(() {
+                            error = "ERROR";
+                          });
+                        } else if (result == 1) {
+                          setState(() {
+                            error = "Email Already in Use";
+                          });
+                        } else if (result == 2) {
+                          setState(() {
+                            error = "Invalid Email Format";
+                          });
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Wrapper(),
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    child: Text("Create Account")),
+                SizedBox(height: 10),
+                if (error.isNotEmpty)
+                  Text(
+                    error,
+                    style: TextStyle(
+                      color: Colors.red[700],
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                SizedBox(height: 10),
+                Text("Already Have an Account?"),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Login(),
+                        ),
+                      );
+                    },
+                    child: Text("Log In")),
+              ],
+            ),
           ),
         ),
       ),
