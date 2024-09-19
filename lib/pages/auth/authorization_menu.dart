@@ -18,9 +18,6 @@ class AuthorizationMenu extends StatelessWidget {
             children: [
               Image.asset(
                 "assets/storylady.jpeg",
-                // code below blends image color if it looks good?
-                //color: Colors.blue[100],
-                //colorBlendMode: BlendMode.multiply,
               ),
               Text(
                 "StoryTeller AI",
@@ -29,7 +26,14 @@ class AuthorizationMenu extends StatelessWidget {
                     fontSize: 40,
                     color: Colors.white),
               ),
+              SizedBox(height: 10),
               Text("Description of the App"),
+              Text("Description of the App"),
+              Text("Description of the App"),
+              Text("Description of the App"),
+              Text("Description of the App"),
+              Text("Description of the App"),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
