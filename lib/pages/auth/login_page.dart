@@ -53,9 +53,7 @@ class _LoginState extends State<Login> {
                   email = value;
                 },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               TextFormField(
                 validator: (value) {
                   if (value!.length < 6) {
@@ -69,9 +67,7 @@ class _LoginState extends State<Login> {
                   password = value;
                 },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () async {
                     if (globalKey.currentState!.validate()) {
@@ -99,9 +95,7 @@ class _LoginState extends State<Login> {
                   fontSize: 15,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () async {
                   dynamic result = await auth.guestSignIn();
@@ -120,7 +114,7 @@ class _LoginState extends State<Login> {
                 },
                 child: Text("Sign-in as Guest"),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Text("Don't Have an Account?"),
               ElevatedButton(
                   onPressed: () {
