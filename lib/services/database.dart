@@ -4,17 +4,20 @@ class DatabaseServices {
   final String uid;
   DatabaseServices({required this.uid});
 
-  final CollectionReference userInfoCollection =
-      FirebaseFirestore.instance.collection("User_Info");
+  final CollectionReference usernameCollection =
+      FirebaseFirestore.instance.collection("Username");
+
+  final CollectionReference categoriesCollection =
+      FirebaseFirestore.instance.collection("Categories");
 
   Future updateUserName(String username) async {
-    return await userInfoCollection.doc(uid).set({
+    return await usernameCollection.doc(uid).set({
       "username": username,
     });
   }
 
   Future updateUserCategories(List categories) async {
-    return await userInfoCollection.doc(uid).set({
+    return await categoriesCollection.doc(uid).set({
       "categories": categories,
     });
   }
