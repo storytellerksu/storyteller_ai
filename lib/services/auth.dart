@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:storytellerai/services/database.dart';
 import 'package:storytellerai/services/myUser.dart';
 
 class AuthorizationService {
@@ -35,6 +36,8 @@ class AuthorizationService {
       UserCredential result = await authKey.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user!;
+      // UPDATE VALUES
+      await DatabaseServices(uid: user.uid).updateUserName("name");
       return userIDFromUser(user);
     } on FirebaseAuthException catch (e) {
       print(e.toString());
