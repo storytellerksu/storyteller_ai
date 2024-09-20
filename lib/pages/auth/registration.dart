@@ -18,6 +18,7 @@ class _RegistrationState extends State<Registration> {
 
   String email = "";
   String password = "";
+  String username = "";
   String error = "";
 
   @override
@@ -55,6 +56,19 @@ class _RegistrationState extends State<Registration> {
                 SizedBox(height: 10),
                 TextFormField(
                   validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Enter An Username";
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                    username = value;
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  validator: (value) {
                     if (value!.length < 6) {
                       return "Password Minimum 6 Characters";
                     } else {
@@ -67,9 +81,23 @@ class _RegistrationState extends State<Registration> {
                   },
                 ),
                 SizedBox(height: 10),
+                TextFormField(
+                  validator: (value) {
+                    if (value == "") {
+                      return "Please Confirm Your Password";
+                    } else if (value != password) {
+                      return "Passwords Do Not Match";
+                    } else {
+                      return null;
+                    }
+                  },
+                  obscureText: true,
+                ),
+                SizedBox(height: 10),
                 ElevatedButton(
                     onPressed: () async {
                       if (globalKey.currentState!.validate()) {
+                        print(email);
                         dynamic result =
                             await auth.emailRegistration(email, password);
                         if (result == null) {
