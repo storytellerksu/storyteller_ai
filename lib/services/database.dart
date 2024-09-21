@@ -21,4 +21,17 @@ class DatabaseServices {
       "categories": categories,
     });
   }
+
+  Future<String> fetchUsername() async {
+    DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection("Username").doc(uid).get();
+
+    if (documentSnapshot.exists) {
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+      return data['username'] as String;
+    } else {
+      return 'User not found'; // Or handle the case where the user doesn't exist
+    }
+  }
 }
