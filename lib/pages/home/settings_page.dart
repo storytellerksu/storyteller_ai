@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:storytellerai/services/auth.dart';
+import 'package:storytellerai/services/user_services.dart';
 
 class Settings_Page extends StatelessWidget {
   Settings_Page({super.key});
 
-  final AuthorizationService auth = AuthorizationService();
+  final UserServices auth = UserServices();
 
   @override
   Widget build(BuildContext context) {

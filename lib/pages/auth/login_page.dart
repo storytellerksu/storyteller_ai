@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/auth/registration.dart';
 import 'package:storytellerai/pages/wrapper.dart';
-import 'package:storytellerai/services/auth.dart';
+import 'package:storytellerai/services/user_services.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final AuthorizationService auth = AuthorizationService();
+  final UserServices auth = UserServices();
   final globalKey = GlobalKey<FormState>();
 
   String email = "";

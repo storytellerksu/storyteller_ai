@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/home/menu_page.dart';
 import 'package:storytellerai/pages/home/settings_page.dart';
 import 'package:storytellerai/pages/home/story_page.dart';
-import 'package:storytellerai/services/auth.dart';
+import 'package:storytellerai/services/user_services.dart';
 
 class Home_Page extends StatefulWidget {
   Home_Page({super.key});
@@ -14,7 +14,7 @@ class Home_Page extends StatefulWidget {
 }
 
 class _Home_PageState extends State<Home_Page> {
-  final AuthorizationService auth = AuthorizationService();
+  final UserServices auth = UserServices();
 
   int currentPage = 0;
 
@@ -34,18 +34,6 @@ class _Home_PageState extends State<Home_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      /*appBar: AppBar(
-        title: Text("Home Page"),
-        backgroundColor: Colors.blue[300],
-        actions: <Widget>[
-          IconButton(
-            onPressed: () async {
-              await auth.logOut();
-            },
-            icon: Icon(Icons.logout),
-          ),
-        ],
-      ),*/
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue[900],
         unselectedItemColor: Colors.blue[600],

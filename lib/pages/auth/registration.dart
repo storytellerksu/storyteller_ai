@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/auth/login_page.dart';
 import 'package:storytellerai/pages/wrapper.dart';
-import 'package:storytellerai/services/auth.dart';
+import 'package:storytellerai/services/user_services.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -13,7 +13,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-  final AuthorizationService auth = AuthorizationService();
+  final UserServices auth = UserServices();
   final globalKey = GlobalKey<FormState>();
 
   String email = "";
@@ -98,8 +98,8 @@ class _RegistrationState extends State<Registration> {
                     onPressed: () async {
                       if (globalKey.currentState!.validate()) {
                         print(email);
-                        dynamic result =
-                            await auth.emailRegistration(email, password);
+                        dynamic result = await auth.emailRegistration(
+                            email, password, username);
                         if (result == null) {
                           setState(() {
                             error = "ERROR";
