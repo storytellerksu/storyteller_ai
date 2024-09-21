@@ -1,10 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:storytellerai/services/user_services.dart';
-import 'package:storytellerai/services/database.dart';
-import 'package:storytellerai/services/myUser.dart';
 
 class Menu_Page extends StatefulWidget {
   Menu_Page({super.key});
