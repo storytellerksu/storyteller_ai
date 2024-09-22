@@ -69,6 +69,8 @@ flutter:
     - assets/librarybooks.jpeg
     - assets/placehold.jpeg
     - assets/storypage_mock.png
+    - assets/genres.jpg
+    - assets/sharing.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
