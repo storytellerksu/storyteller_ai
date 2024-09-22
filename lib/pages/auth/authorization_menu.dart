@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:storytellerai/pages/auth/login_page.dart';
 import 'package:storytellerai/pages/auth/registration.dart';
@@ -31,8 +33,8 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Column(
@@ -45,17 +47,20 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                   _buildCarouselItem(
                     image: "assets/storylady.jpeg",
                     title: "Create Stories",
-                    description: "Easily create your own stories with our user-friendly interface.",
+                    description:
+                        "Easily create your own stories with our user-friendly interface.",
                   ),
                   _buildCarouselItem(
                     image: "assets/genres.jpg",
                     title: "Explore Genres",
-                    description: "Browse a wide range of genres to find inspiration.",
+                    description:
+                        "Browse a wide range of genres to find inspiration.",
                   ),
                   _buildCarouselItem(
-                    image: "assets/sharing.webp", 
+                    image: "assets/sharing.webp",
                     title: "Share Your Stories",
-                    description: "Publish your stories and reach a wider audience.",
+                    description:
+                        "Publish your stories and reach a wider audience.",
                   ),
                 ],
               ),
@@ -82,7 +87,8 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        textStyle: TextStyle(fontSize: 20, fontFamily: 'San Francisco'),
+                        textStyle: TextStyle(
+                            fontSize: 20, fontFamily: 'San Francisco'),
                       ),
                       child: Text("LOGIN"),
                     ),
@@ -105,7 +111,8 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        textStyle: TextStyle(fontSize: 20, fontFamily: 'San Francisco'),
+                        textStyle: TextStyle(
+                            fontSize: 20, fontFamily: 'San Francisco'),
                       ),
                       child: Text("SIGN UP"),
                     ),
@@ -119,7 +126,10 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
     );
   }
 
-  Widget _buildCarouselItem({required String image, required String title, required String description}) {
+  Widget _buildCarouselItem(
+      {required String image,
+      required String title,
+      required String description}) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -127,26 +137,28 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-          padding: const EdgeInsets.only(top: 30), // Added padding to push the image down
-          child: Container(
-            height: 250, // Adjust height as needed
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 20,
-                  offset: Offset(0, 10),
-                ),
-              ],
-            ),
+            padding: const EdgeInsets.only(
+                top: 30), // Added padding to push the image down
+            child: Container(
+              height: 330, // Adjust height as needed
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 20,
+                    offset: Offset(0, 10),
+                  ),
+                ],
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
                   image,
                   fit: BoxFit.fill,
                   height: 200, // Increased image height
-                  width: MediaQuery.of(context).size.width * 0.8, // Responsive width
+                  width: MediaQuery.of(context).size.width *
+                      0.8, // Responsive width
                 ),
               ),
             ),
