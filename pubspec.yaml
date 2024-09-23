@@ -71,6 +71,8 @@ flutter:
     - assets/storypage_mock.png
     - assets/genres.jpg
     - assets/sharing.webp
+    - assets/feedback.webp
+    - assets/community.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

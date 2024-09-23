@@ -56,6 +56,14 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                     description:
                         "Browse a wide range of genres to find inspiration.",
                   ),
+                  _buildCarouselItem(image: "assets/community.webp",
+                   title: "Join Community",
+                   description: "Connect with other storytellers and share your work"),
+
+                   _buildCarouselItem(image: "assets/feedback.webp", 
+                   title: "Get Feedback", 
+                   description: "Recieve constructive feedback from peers."),
+
                   _buildCarouselItem(
                     image: "assets/sharing.webp",
                     title: "Share Your Stories",
@@ -195,7 +203,7 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
   Widget _buildPageIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(3, (index) {
+      children: List.generate(5, (index) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 4),
           height: 8,
