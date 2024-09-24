@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 from typing import Any
 
 initialize_app()
+
 # creates callable function
 @https_fn.on_call()
 def generateText(req: https_fn.CallableRequest) -> Any:
@@ -27,7 +28,8 @@ def generateText(req: https_fn.CallableRequest) -> Any:
 #    name = req.auth.token.get("name", "")
 #    picture = req.auth.token.get("picture", "")
 #    email = req.auth.token.get("email", "")
-    return {"text": generate}
+    storyText = generate()
+    return {"text": storyText}
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
