@@ -55,7 +55,14 @@ class _Home_PageState extends State<Home_Page> {
           ),
         ],
       ),
-      body: pageList[currentPage],
+      body: IndexedStack(
+        index: currentPage,
+        children: [
+          Menu_Page(),
+          Story_Page(),
+          Settings_Page(),
+        ],
+      ),
     );
   }
 }
