@@ -16,13 +16,14 @@ from dotenv import load_dotenv
 # Any allows it to accept any data type
 from typing import Any
 
+initialize_app()
 # creates callable function
 @https_fn.on_call()
 def generateText(req: https_fn.CallableRequest) -> Any:
 # Message text passed from the client.
-#    text = req.data["text"]
+    text = req.data["text"]
 # Authentication / user information is automatically added to the request.
-#    uid = req.auth.uid
+    uid = req.auth.uid
 #    name = req.auth.token.get("name", "")
 #    picture = req.auth.token.get("picture", "")
 #    email = req.auth.token.get("email", "")
