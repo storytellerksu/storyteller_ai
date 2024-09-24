@@ -1,61 +1,23 @@
 {
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "storytellerai-swag",
-          "appId": "1:915397074830:android:6e1663f8a4de997cc68edf",
-          "fileOutput": "android/app/google-services.json"
-        }
-      },
-      "ios": {
-        "default": {
-          "projectId": "storytellerai-swag",
-          "appId": "1:915397074830:ios:78dd94479fb86355c68edf",
-          "uploadDebugSymbols": false,
-          "fileOutput": "ios/Runner/GoogleService-Info.plist"
-        }
-      },
-      "macos": {
-        "default": {
-          "projectId": "storytellerai-swag",
-          "appId": "1:915397074830:ios:78dd94479fb86355c68edf",
-          "uploadDebugSymbols": false,
-          "fileOutput": "macos/Runner/GoogleService-Info.plist"
-        }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "storytellerai-swag",
-          "configurations": {
-            "android": "1:915397074830:android:6e1663f8a4de997cc68edf",
-            "ios": "1:915397074830:ios:78dd94479fb86355c68edf",
-            "macos": "1:915397074830:ios:78dd94479fb86355c68edf",
-            "web": "1:915397074830:web:1f9a1c252b0822bec68edf",
-            "windows": "1:915397074830:web:4b897da0ced62f48c68edf"
-          }
-        }
-      }
-    }
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
   "functions": [
     {
       "source": "functions",
       "codebase": "default",
+      "runtime": "python312",
+      "predeploy": [
+        "(cd ./functions; python3.12 -m venv venv; ./venv/bin/pip install -r requirements.txt)"
+      ],
       "ignore": [
         "venv",
         ".git",
         "firebase-debug.log",
         "firebase-debug.*.log",
         "*.local"
-      ],
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run lint"
       ]
     }
-  ]
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
 }
