@@ -23,10 +23,10 @@ class _Story_PageState extends State<Story_Page> {
       },
     );
     print("step 2");
-    if (result.data is String) {
+    if (result.data["text"] is String) {
       print("step 3");
       setState(() {
-        storyText = result.data as String;
+        storyText = result.data["text"] as String;
       });
       print("step 4");
     } else {
@@ -42,7 +42,7 @@ class _Story_PageState extends State<Story_Page> {
         backgroundColor: Color.fromARGB(255, 159, 186, 188),
         body: Column(
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 60),
             Center(
               child: ElevatedButton(
                 onPressed: () async {
@@ -51,7 +51,17 @@ class _Story_PageState extends State<Story_Page> {
                 child: Text("Press to Generate Story!"),
               ),
             ),
-            Text(storyText),
+            ElevatedButton(
+                onPressed: () {
+                  print(storyText);
+                },
+                child: Text("troubleshoot")),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.only(top: 0, bottom: 150),
+                children: [Text(storyText)],
+              ),
+            ),
           ],
         ),
       ),
