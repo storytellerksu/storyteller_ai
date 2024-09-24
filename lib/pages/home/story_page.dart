@@ -11,14 +11,16 @@ class Story_Page extends StatefulWidget {
 }
 
 class _Story_PageState extends State<Story_Page> {
+  String storyInput = "";
   String storyText = "";
+  final globalKey = GlobalKey<FormState>();
 
-  getStory() async {
+  getStory(String storyInput) async {
     print("step 1");
     final result =
         await FirebaseFunctions.instance.httpsCallable("generateText").call(
       {
-        "text": "text",
+        "text": storyInput,
         "push": true,
       },
     );
@@ -40,29 +42,54 @@ class _Story_PageState extends State<Story_Page> {
       canPop: false,
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 159, 186, 188),
-        body: Column(
-          children: [
-            SizedBox(height: 60),
-            Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  await getStory();
+        body: Form(
+          key: globalKey,
+          child: Column(
+            children: [
+              SizedBox(height: 80),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Write a Story...",
+                  prefixIcon: Icon(Icons.auto_awesome),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Empty Text Field";
+                  } else {
+                    return null;
+                  }
                 },
-                child: Text("Press to Generate Story!"),
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  print(storyText);
+                onChanged: (value) {
+                  storyInput = value;
                 },
-                child: Text("troubleshoot")),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.only(top: 0, bottom: 150),
-                children: [Text(storyText)],
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (globalKey.currentState!.validate()) {
+                      await getStory(storyInput);
+                    }
+                  },
+                  child: Text("Press to Generate Story!"),
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    print(storyText);
+                  },
+                  child: Text("troubleshoot")),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.only(top: 0, bottom: 150),
+                  children: [Text(storyText)],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

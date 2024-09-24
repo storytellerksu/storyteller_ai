@@ -22,19 +22,19 @@ initialize_app()
 @https_fn.on_call()
 def generateText(req: https_fn.CallableRequest) -> Any:
 # Message text passed from the client.
-    text = req.data["text"]
+    inputText = req.data["text"]
 # Authentication / user information is automatically added to the request.
     uid = req.auth.uid
 #    name = req.auth.token.get("name", "")
 #    picture = req.auth.token.get("picture", "")
 #    email = req.auth.token.get("email", "")
-    storyText = generate()
+    storyText = generate(inputText)
     return {"text": storyText}
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def generate():
+def generate(inputText):
     response = client.chat.completions.create(model="gpt-4o-mini",
     messages=[
       {
@@ -43,7 +43,7 @@ def generate():
       },
       {
         "role": "user",
-        "content": "Tell me a extremely long story about a idiot knight and a strong beast."
+        "content": inputText
       }
     ],
     temperature=0.9,
