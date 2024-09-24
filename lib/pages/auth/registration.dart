@@ -26,7 +26,7 @@ class _RegistrationState extends State<Registration> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.all(40),
           child: Form(
@@ -37,8 +37,8 @@ class _RegistrationState extends State<Registration> {
                 Text(
                   "SIGN UP",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50,
+                    color: Colors.grey[700],
+                    fontSize: 20, fontFamily: 'San Francisco'
                   ),
                 ),
                 TextFormField(

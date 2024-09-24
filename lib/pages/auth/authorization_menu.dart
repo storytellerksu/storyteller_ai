@@ -46,6 +46,12 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                 children: [
                   _buildCarouselItem(
                     image: "assets/storylady.jpeg",
+                    title: "Storyteller AI",
+                    description:
+                        "Welcome to Storyteller AI",
+                  ),
+                  _buildCarouselItem(
+                    image: "assets/storylady.jpeg",
                     title: "Create Stories",
                     description:
                         "Easily create your own stories with our user-friendly interface.",
@@ -146,9 +152,9 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-                top: 30), // Added padding to push the image down
+                top: 30), 
             child: Container(
-              height: 330, // Adjust height as needed
+              height: 330, 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
@@ -164,9 +170,9 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                 child: Image.asset(
                   image,
                   fit: BoxFit.fill,
-                  height: 200, // Increased image height
+                  height: 200, 
                   width: MediaQuery.of(context).size.width *
-                      0.8, // Responsive width
+                      0.8, 
                 ),
               ),
             ),

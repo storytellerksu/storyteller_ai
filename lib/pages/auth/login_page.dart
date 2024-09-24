@@ -32,16 +32,30 @@ class _LoginState extends State<Login> {
             key: globalKey,
             child: Column(
               children: [
-                Image.asset("assets/librarybooks.jpeg"),
+                Image.asset("assets/logo_example.webp",
+                height: 100,
+                ),
+                SizedBox(height: 30,),
                 Text(
-                  "LOG IN",
+                  "Log In",
                   style: TextStyle(
                     color: Colors.grey[700],
-                    fontSize: 20, fontFamily: 'San Francisco'
+                    fontSize: 24, 
+                    fontFamily: 'San Francisco',
+                    fontWeight: FontWeight.bold,
           
                   ),
                 ),
+          
+                SizedBox(height: 30,),
                 TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter An Email";
@@ -53,8 +67,17 @@ class _LoginState extends State<Login> {
                     email = value;
                   },
                 ),
-                SizedBox(height: 10),
+                
                 TextFormField(
+                   decoration: InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+          
+                      ),
+                    ),
+                  
                   validator: (value) {
                     if (value!.length < 6) {
                       return "Enter a Password Longer than 6 Characters";
@@ -67,6 +90,17 @@ class _LoginState extends State<Login> {
                     password = value;
                   },
                 ),
+
+                if(error.isNotEmpty) 
+                  Text(
+                    error,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14,
+                    ),
+
+                  ),
+                
                 SizedBox(height: 10),
                 ElevatedButton(
                     onPressed: () async {

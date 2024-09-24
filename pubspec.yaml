@@ -73,6 +73,7 @@ flutter:
     - assets/sharing.webp
     - assets/feedback.webp
     - assets/community.webp
+    - assets/logo_example.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
