@@ -22,20 +22,26 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-          padding: EdgeInsets.all(40),
+        body: Center(
+          child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
           child: Form(
             key: globalKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset("assets/logo_example.webp",
                 height: 100,
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 30),
+
+            
                 Text(
                   "Log In",
                   style: TextStyle(
@@ -67,7 +73,8 @@ class _LoginState extends State<Login> {
                     email = value;
                   },
                 ),
-                
+
+                SizedBox(height: 20),
                 TextFormField(
                    decoration: InputDecoration(
                     labelText: 'Password',
@@ -91,6 +98,8 @@ class _LoginState extends State<Login> {
                   },
                 ),
 
+                SizedBox(height: 20),
+
                 if(error.isNotEmpty) 
                   Text(
                     error,
@@ -101,8 +110,10 @@ class _LoginState extends State<Login> {
 
                   ),
                 
-                SizedBox(height: 10),
-                ElevatedButton(
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
                     onPressed: () async {
                       if (globalKey.currentState!.validate()) {
                         dynamic result = await auth.emailLogin(email, password);
@@ -113,51 +124,75 @@ class _LoginState extends State<Login> {
                           });
                         } else if (result == 1) {
                           setState(() {
-                            error = "Wrong Password";
+                            error = "Incorrect Password";
                           });
                         } else {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Wrapper(),
-                            ),
+                              builder: (context) => Wrapper()),
+                            
                           );
                         }
                       }
+            
                     },
-                    child: Text("Sign In")),
-                SizedBox(height: 10),
-                if (error.isNotEmpty)
-                  Text(
-                    error,
-                    style: TextStyle(
-                      color: Colors.red[700],
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                  ),
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  ),
+                ),
+
+
+
+                    
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      dynamic result = await auth.guestSignIn();
+                      if(result!= null) {
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => Wrapper()),
+                        );
+                    } else {
+                      setState(() {
+                        error = "Guest login unavaiable";
+                      });
+                    }
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[400],
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+
+                    ),
+                    child: Text(
+                      "Guest Sign In",
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () async {
-                    dynamic result = await auth.guestSignIn();
-                    if (result == null) {
-                      print("Error Logging In");
-                    } else {
-                      print("Logging In");
-                      print(result.uid);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Wrapper(),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text("Sign-in as Guest"),
                 ),
-                SizedBox(height: 10),
-                Text("Don't Have an Account?"),
-                ElevatedButton(
+                  
+
+                SizedBox(height: 20),
+                Text("Don't Have an Account?", 
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+                
+                TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -166,8 +201,17 @@ class _LoginState extends State<Login> {
                         ),
                       );
                     },
-                    child: Text("Sign-Up")),
+                    child: Text("Sign-Up",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                    
+                    )
+                    ),
               ],
+            ),
             ),
           ),
         ),
