@@ -46,27 +46,29 @@ class _Story_PageState extends State<Story_Page> {
           key: globalKey,
           child: Column(
             children: [
-              SizedBox(height: 80),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Write a Story...",
-                  prefixIcon: Icon(Icons.auto_awesome),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+              SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 5),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Write a Story...",
+                    prefixIcon: Icon(Icons.auto_awesome),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Empty Text Field";
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                    storyInput = value;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Empty Text Field";
-                  } else {
-                    return null;
-                  }
-                },
-                onChanged: (value) {
-                  storyInput = value;
-                },
               ),
-              SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   onPressed: () async {

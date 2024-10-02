@@ -39,14 +39,14 @@ def generate(inputText):
     messages=[
       {
         "role": "system",
-        "content": "You are a creative storyteller who tells short stories. Write a short story that is strictly less than 500 words."
+        "content": "You are a creative storyteller who tells very short stories. Write a short story that is strictly less than 150 words."
       },
       {
         "role": "user",
         "content": inputText
       }
     ],
-    temperature=0.9,
+    temperature=0.5,
     max_tokens=1000,
     top_p=1)
     return response.choices[0].message.content
