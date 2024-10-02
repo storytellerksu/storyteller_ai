@@ -23,25 +23,43 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-          padding: EdgeInsets.all(40),
+        body: Center(
+          child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
           child: Form(
             key: globalKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/placehold.jpeg"),
+                Image.asset("assets/placehold.jpeg",
+                height: 100,
+                ),
+            
+                SizedBox(height: 30),
                 Text(
-                  "SIGN UP",
+                  "Sign Up",
                   style: TextStyle(
                     color: Colors.grey[700],
-                    fontSize: 20, fontFamily: 'San Francisco'
+                    fontSize: 20, fontFamily: 'San Francisco',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+
+                SizedBox(height: 30),
                 TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    prefix: Icon(Icons.email),
+                    border:OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  ),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter An Email";
@@ -53,8 +71,15 @@ class _RegistrationState extends State<Registration> {
                     email = value;
                   },
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  ),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter An Username";
@@ -66,8 +91,16 @@ class _RegistrationState extends State<Registration> {
                     username = value;
                   },
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    prefixIcon: Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+
+                  ),
                   validator: (value) {
                     if (value!.length < 6) {
                       return "Password Minimum 6 Characters";
@@ -80,8 +113,15 @@ class _RegistrationState extends State<Registration> {
                     password = value;
                   },
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Confirmed Password",
+                    prefixIcon: Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  ),
                   validator: (value) {
                     if (value == "") {
                       return "Please Confirm Your Password";
@@ -93,8 +133,24 @@ class _RegistrationState extends State<Registration> {
                   },
                   obscureText: true,
                 ),
-                SizedBox(height: 10),
-                ElevatedButton(
+                SizedBox(height: 20),
+                
+                //Handle errors
+                if(error.isEmpty)
+                Text(
+                  error, 
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14,
+                  ),
+                ),
+
+
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+      
+                  child: ElevatedButton(
                     onPressed: () async {
                       if (globalKey.currentState!.validate()) {
                         print(email);
@@ -102,7 +158,7 @@ class _RegistrationState extends State<Registration> {
                             email, password, username);
                         if (result == null) {
                           setState(() {
-                            error = "ERROR";
+                            error = "Error Registering";
                           });
                         } else if (result == 1) {
                           setState(() {
@@ -119,23 +175,30 @@ class _RegistrationState extends State<Registration> {
                               builder: (context) => Wrapper(),
                             ),
                           );
+                 
                         }
                       }
                     },
-                    child: Text("Create Account")),
-                SizedBox(height: 10),
-                if (error.isNotEmpty)
-                  Text(
-                    error,
-                    style: TextStyle(
-                      color: Colors.red[700],
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                SizedBox(height: 10),
-                Text("Already Have an Account?"),
-                ElevatedButton(
+
+                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                      ),
+                    
+
+                child: Text("Create Account",
+                style: TextStyle(fontSize: 16),
+                )
+                ),
+                ),
+                
+                SizedBox(height: 20),
+                Text("Already Have an Account?",
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+                TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -144,12 +207,20 @@ class _RegistrationState extends State<Registration> {
                         ),
                       );
                     },
-                    child: Text("Log In")),
+
+                    child: Text("Log In",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                    )),
               ],
             ),
           ),
         ),
       ),
+      )
     );
   }
 }

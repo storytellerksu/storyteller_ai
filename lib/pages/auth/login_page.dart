@@ -18,6 +18,7 @@ class _LoginState extends State<Login> {
 
   String email = "";
   String password = "";
+  String username = "";
   String error = "";
 
   @override
