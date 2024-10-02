@@ -55,7 +55,7 @@ class _RegistrationState extends State<Registration> {
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "Email",
-                    prefix: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.email),
                     border:OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     )
