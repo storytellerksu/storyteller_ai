@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:storytellerai/services/user_services.dart';
 
 class Menu_Page extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   Menu_Page({super.key});
 
   @override
