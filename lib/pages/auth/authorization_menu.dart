@@ -45,7 +45,7 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                 controller: _pageController,
                 children: [
                   _buildCarouselItem(
-                    image: "assets/storylady.jpeg",
+                    image: "assets/app_logo.webp",
                     title: "Storyteller AI",
                     description:
                         "Welcome to Storyteller AI",

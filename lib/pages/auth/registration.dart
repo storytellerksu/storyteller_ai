@@ -37,8 +37,12 @@ class _RegistrationState extends State<Registration> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/placehold.jpeg",
-                height: 100,
+                ClipOval(
+                child: Image.asset("assets/app_logo.webp",
+                height: 120,
+                width: 120,
+                fit: BoxFit.cover,
+                ),
                 ),
             
                 SizedBox(height: 30),
