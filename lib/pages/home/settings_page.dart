@@ -2,6 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:storytellerai/services/user_services.dart';
+import 'package:storytellerai/settings/App_support.dart';
+import 'package:storytellerai/settings/about.dart';
+import 'package:storytellerai/settings/legal.dart';
+import 'package:storytellerai/settings/privacy.dart';
+
+//Setting page has a listView that contains each section of the settings. Each section is clickable
+
 
 class Settings_Page extends StatelessWidget {
   Settings_Page({super.key});
@@ -10,23 +17,62 @@ class Settings_Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
+    return WillPopScope(
+      onWillPop: () async => false, 
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 174, 233, 227),
-        body: Column(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        appBar: AppBar(
+          title: Text("Settings"),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        ),
+        body: ListView(
+          padding: EdgeInsets.symmetric(vertical: 20),
           children: [
-            SizedBox(height: 80),
-            Text("SETTnIGS lougout button below :0",
-                style: TextStyle(fontSize: 80)),
-            IconButton(
-              onPressed: () async {
-                await auth.logOut();
+            ListTile(
+              title: Text("App Support"),
+              onTap: () {
+                 Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AppSupportPage()),
+                 );
               },
-              icon: Icon(Icons.logout_outlined),
-              color: const Color.fromARGB(255, 21, 0, 255),
-              iconSize: 70,
-            )
+            ),
+            ListTile(
+              title: Text("About"),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AboutPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Legal"),
+              onTap: () {
+                 Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => LegalPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Privacy Policy"),
+              onTap: () {
+                 Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PrivacyPage()),
+                );
+              },
+            ),
+            Divider(), // divider
+            ListTile(
+              title: Text(
+                "Log Out",
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () async {
+                await auth.logOut();
+                // login page after logout
+                Navigator.of(context).pushReplacementNamed('/login'); // Update this with your login route
+              },
+              trailing: Icon(Icons.logout_outlined),
+            ),
           ],
         ),
       ),
