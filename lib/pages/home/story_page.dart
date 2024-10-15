@@ -122,6 +122,7 @@ class _Story_PageState extends State<Story_Page> {
       backgroundColor: Color(0xFFF0F4F8), 
       appBar: AppBar(
         title: Text('Create', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
       ),

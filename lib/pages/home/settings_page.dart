@@ -23,6 +23,7 @@ class Settings_Page extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
           title: Text("Settings"),
+          automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         ),
         body: ListView(
