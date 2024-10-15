@@ -38,7 +38,41 @@ class _Menu_PageState extends State<Menu_Page> {
       canPop: false,
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 174, 233, 227),
-        body: Text("Welcome $username", style: TextStyle(fontSize: 90)),
+        appBar: AppBar(
+          title: Text("Home"),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(8),
+          children: <Widget>[
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+              ),
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Story 1", 
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 10),
+                    Text("Stuffs here")
+                    
+                    
+                  ],
+                ),
+
+              ),
+            )
+
+            
+          ],
+        )
+        
       ),
     );
   }
