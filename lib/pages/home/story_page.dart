@@ -66,9 +66,10 @@ class _Story_PageState extends State<Story_Page> {
       storyText = result.data["text"] as String;
       print(storyText);
       splitStory(storyText);
-      if (storyParts[storyParts.length - 1].isEmpty) {
-        storyParts.removeLast();
+      for (int i = 0; i < storyParts.length; i++) {
+        print(storyParts[i]);
       }
+      storyParts.removeLast();
       for (int i = 0; i < storyParts.length; i++) {
         print(storyParts[i]);
       }
