@@ -207,7 +207,7 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
   Widget _buildPageIndicators() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(5, (index) {
+      children: List.generate(6, (index) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 4),
           height: 8,
