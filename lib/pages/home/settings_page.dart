@@ -9,7 +9,6 @@ import 'package:storytellerai/settings/privacy.dart';
 
 //Setting page has a listView that contains each section of the settings. Each section is clickable
 
-
 class Settings_Page extends StatelessWidget {
   Settings_Page({super.key});
 
@@ -18,7 +17,7 @@ class Settings_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false, 
+      onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
@@ -32,9 +31,9 @@ class Settings_Page extends StatelessWidget {
             ListTile(
               title: Text("App Support"),
               onTap: () {
-                 Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => AppSupportPage()),
-                 );
+                );
               },
             ),
             ListTile(
@@ -48,7 +47,7 @@ class Settings_Page extends StatelessWidget {
             ListTile(
               title: Text("Legal"),
               onTap: () {
-                 Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => LegalPage()),
                 );
               },
@@ -56,7 +55,7 @@ class Settings_Page extends StatelessWidget {
             ListTile(
               title: Text("Privacy Policy"),
               onTap: () {
-                 Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => PrivacyPage()),
                 );
               },
@@ -70,7 +69,7 @@ class Settings_Page extends StatelessWidget {
               onTap: () async {
                 await auth.logOut();
                 // login page after logout
-                Navigator.of(context).pushReplacementNamed('/login'); // Update this with your login route
+                //Navigator.of(context).pushReplacementNamed('/login'); // Update this with your login route
               },
               trailing: Icon(Icons.logout_outlined),
             ),
