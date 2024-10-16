@@ -14,31 +14,19 @@ class Story_Page extends StatefulWidget {
 class _Story_PageState extends State<Story_Page> {
   String storyInput = "";
   String storyText = "";
+  List<String> storyParts = [];
 
   final globalKey = GlobalKey<FormState>();
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  bool isLoading = false; 
+  bool isLoading = false;
 
   // 10 images with its corresponding paragraphs
   List<Map<String, String>> data = [];
+  // images
+  List<String> images = [];
 
-  // images 
-  final List<String> images = [
-    'assets/community.webp',
-    'assets/feedback.webp',
-    'assets/genres.jpg',
-    'assets/sharing.webp',
-    'assets/librarybooks.jpeg',
-    'assets/genres.jpg',
-    'assets/genres.jpg',
-    'assets/genres.jpg',
-    'assets/genres.jpg',
-    'assets/genres.jpg',
-  ];
-
-  //split story into 10 parts 
-  List<String> splitStory(String text) {
+  /*List<String> splitStory(String text) {
     List<String> words = text.split(' ');
     int splitLength = (words.length / 10).ceil();
     List<String> splitText = [];
@@ -52,10 +40,18 @@ class _Story_PageState extends State<Story_Page> {
       splitText.add(part);
     }
     return splitText;
+  }*/
+
+  splitStory(String inputText) {
+    // Split the text using the regex.
+    RegExp regex = RegExp(r'\s*\|\|\s*');
+    List<String> parts = inputText.split(regex);
+    storyParts = parts;
   }
 
   // story generations image to text pair
   getStory(String storyInput) async {
+    images = [];
     setState(() {
       isLoading = true; // loading started
     });
@@ -66,14 +62,37 @@ class _Story_PageState extends State<Story_Page> {
         "push": true,
       },
     );
-
     if (result.data["text"] is String) {
-      setState(() {
-        storyText = result.data["text"] as String;
+      storyText = result.data["text"] as String;
+      print(storyText);
+      splitStory(storyText);
+      if (storyParts[storyParts.length - 1].isEmpty) {
+        storyParts.removeLast();
+      }
+      for (int i = 0; i < storyParts.length; i++) {
+        print(storyParts[i]);
+      }
+      for (String part in storyParts) {
+        final imageResult = await FirebaseFunctions.instance
+            .httpsCallable("generateImage")
+            .call(
+          {
+            "text": part,
+            "push": true,
+          },
+        );
+        print(imageResult.data["text"]);
+        images.add(imageResult.data["text"]);
+      }
 
+      /*for (int i = 0; i < images.length; i++) {
+        print(images[i]);
+      }*/
+
+      setState(() {
         // text pair with images
-        List<String> storyParts = splitStory(storyText);
-        data = List.generate(10, (index) {
+        //List<String> storyParts = splitStory(storyText);
+        data = List.generate(storyParts.length, (index) {
           return {
             'image': images[index],
             'text': storyParts[index],
@@ -91,7 +110,8 @@ class _Story_PageState extends State<Story_Page> {
 
   // Event handler for key press
   void handleKeyPress(RawKeyEvent event) {
-    if (event.isKeyPressed(LogicalKeyboardKey.enter) && globalKey.currentState!.validate()) {
+    if (event.isKeyPressed(LogicalKeyboardKey.enter) &&
+        globalKey.currentState!.validate()) {
       getStory(storyInput);
     }
   }
@@ -119,9 +139,10 @@ class _Story_PageState extends State<Story_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0F4F8), 
+      backgroundColor: Color(0xFFF0F4F8),
       appBar: AppBar(
-        title: Text('Create', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+        title: Text('Create',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
         automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
@@ -142,9 +163,11 @@ class _Story_PageState extends State<Story_Page> {
                   decoration: InputDecoration(
                     labelText: "Write a Story...",
                     labelStyle: TextStyle(fontSize: 16, color: Colors.black54),
-                    prefixIcon: Icon(Icons.auto_awesome, color: Colors.blueAccent),
+                    prefixIcon:
+                        Icon(Icons.auto_awesome, color: Colors.blueAccent),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.arrow_forward, color: Colors.blueAccent), // arrow icon button
+                      icon: Icon(Icons.arrow_forward,
+                          color: Colors.blueAccent), // arrow icon button
                       onPressed: () {
                         if (globalKey.currentState!.validate()) {
                           getStory(storyInput); // story generation
@@ -173,13 +196,13 @@ class _Story_PageState extends State<Story_Page> {
                       getStory(storyInput);
                     }
                   },
-                  textInputAction: TextInputAction.done, // 
-                  enabled: !isLoading, 
+                  textInputAction: TextInputAction.done, //
+                  enabled: !isLoading,
                 ),
 
                 SizedBox(height: 20),
 
-                // loading indicator 
+                // loading indicator
                 if (isLoading)
                   Center(
                     child: Column(
@@ -212,18 +235,21 @@ class _Story_PageState extends State<Story_Page> {
                                   itemCount: data.length,
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
                                       child: Card(
                                         elevation: 10,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
                                         child: Column(
                                           children: [
                                             ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.vertical(top: Radius.circular(30)),
-                                              child: Image.asset(
+                                                  BorderRadius.vertical(
+                                                      top: Radius.circular(30)),
+                                              child: Image.network(
                                                 data[index]['image']!,
                                                 fit: BoxFit.cover,
                                                 height: 250,
@@ -231,7 +257,8 @@ class _Story_PageState extends State<Story_Page> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.all(20.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
                                               child: Text(
                                                 data[index]['text']!,
                                                 style: TextStyle(
@@ -253,14 +280,19 @@ class _Story_PageState extends State<Story_Page> {
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center, // align buttons to center
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // align buttons to center
                                   children: [
                                     ElevatedButton(
-                                      onPressed: _currentPage > 0 ? _goToPreviousPage : null,
+                                      onPressed: _currentPage > 0
+                                          ? _goToPreviousPage
+                                          : null,
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 25, vertical: 15),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
                                         backgroundColor: _currentPage > 0
                                             ? Colors.blueAccent
@@ -271,19 +303,23 @@ class _Story_PageState extends State<Story_Page> {
                                         style: TextStyle(fontSize: 16),
                                       ),
                                     ),
-                                    SizedBox(width: 20), // space between buttons
+                                    SizedBox(
+                                        width: 20), // space between buttons
                                     ElevatedButton(
                                       onPressed: _currentPage < data.length - 1
                                           ? _goToNextPage
                                           : null,
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 25, vertical: 15),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
-                                        backgroundColor: _currentPage < data.length - 1
-                                            ? Colors.blueAccent
-                                            : Colors.grey,
+                                        backgroundColor:
+                                            _currentPage < data.length - 1
+                                                ? Colors.blueAccent
+                                                : Colors.grey,
                                       ),
                                       child: Text(
                                         'Next',
@@ -298,7 +334,8 @@ class _Story_PageState extends State<Story_Page> {
                         : Center(
                             child: Text(
                               "Please generate a story.",
-                              style: TextStyle(fontSize: 18, color: Colors.black54),
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.black54),
                               textAlign: TextAlign.center,
                             ),
                           ),
