@@ -47,8 +47,7 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                   _buildCarouselItem(
                     image: "assets/app_logo.webp",
                     title: "Storyteller AI",
-                    description:
-                        "Welcome to Storyteller AI",
+                    description: "Welcome to Storyteller AI",
                   ),
                   _buildCarouselItem(
                     image: "assets/storylady.jpeg",
@@ -57,21 +56,22 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                         "Easily create your own stories with our user-friendly interface.",
                   ),
                   _buildCarouselItem(
-                    image: "assets/genres.jpg",
+                    image: "assets/genre.png",
                     title: "Explore Genres",
                     description:
                         "Browse a wide range of genres to find inspiration.",
                   ),
-                  _buildCarouselItem(image: "assets/community.webp",
-                   title: "Join Community",
-                   description: "Connect with other storytellers and share your work"),
-
-                   _buildCarouselItem(image: "assets/feedback.webp", 
-                   title: "Get Feedback", 
-                   description: "Recieve constructive feedback from peers."),
-
                   _buildCarouselItem(
-                    image: "assets/sharing.webp",
+                      image: "assets/pixelppl.jpeg",
+                      title: "Join Community",
+                      description:
+                          "Connect with other storytellers and share your work"),
+                  _buildCarouselItem(
+                      image: "assets/fantasyread.jpeg",
+                      title: "Get Feedback",
+                      description: "Recieve constructive feedback from peers."),
+                  _buildCarouselItem(
+                    image: "assets/share.jpeg",
                     title: "Share Your Stories",
                     description:
                         "Publish your stories and reach a wider audience.",
@@ -151,10 +151,9 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-                top: 30), 
+            padding: const EdgeInsets.only(top: 30),
             child: Container(
-              height: 330, 
+              height: 330,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
@@ -170,9 +169,8 @@ class _AuthorizationMenuState extends State<AuthorizationMenu> {
                 child: Image.asset(
                   image,
                   fit: BoxFit.fill,
-                  height: 200, 
-                  width: MediaQuery.of(context).size.width *
-                      0.8, 
+                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.8,
                 ),
               ),
             ),

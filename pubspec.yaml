@@ -64,17 +64,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    #   - images/a_dot_burr.jpeg
-    #   - images/a_dot_ham.jpeg
     - assets/storylady.jpeg
     - assets/librarybooks.jpeg
     - assets/placehold.jpeg
-    - assets/storypage_mock.png
-    - assets/genres.jpg
-    - assets/sharing.webp
-    - assets/feedback.webp
+    - assets/genre.png
+    - assets/pixelppl.jpeg
+    - assets/fantasyread.jpeg
+    - assets/share.jpeg
     - assets/community.webp
-    - assets/logo_example.webp
     - assets/app_logo.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
