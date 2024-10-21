@@ -11,7 +11,7 @@ class LegalPage extends StatelessWidget {
         title: Text("Legal"),
       ),
       body: Center(
-        child: Text("Legal Stuffs"),
+        child: Image.asset("assets/placehold.jpeg"),
       ),
     );
   }
