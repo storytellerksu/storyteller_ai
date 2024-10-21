@@ -26,22 +26,6 @@ class _Story_PageState extends State<Story_Page> {
   // images
   List<String> images = [];
 
-  /*List<String> splitStory(String text) {
-    List<String> words = text.split(' ');
-    int splitLength = (words.length / 10).ceil();
-    List<String> splitText = [];
-    for (int i = 0; i < 10; i++) {
-      int start = i * splitLength;
-      int end = start + splitLength;
-      String part = words.sublist(start, end > words.length ? words.length : end).join(' ');
-      if (part.isNotEmpty) {
-        part = part[0].toUpperCase() + part.substring(1); 
-      }
-      splitText.add(part);
-    }
-    return splitText;
-  }*/
-
   splitStory(String inputText) {
     // Split the text using the regex.
     RegExp regex = RegExp(r'\s*\|\|\s*');
@@ -69,6 +53,8 @@ class _Story_PageState extends State<Story_Page> {
       for (int i = 0; i < storyParts.length; i++) {
         print(storyParts[i]);
       }
+      // gpt or cloud functions is unintentionally returning an extra blank
+      // so i removelast as temporary fix
       storyParts.removeLast();
       for (int i = 0; i < storyParts.length; i++) {
         print(storyParts[i]);
@@ -99,6 +85,11 @@ class _Story_PageState extends State<Story_Page> {
             'text': storyParts[index],
           };
         });
+        // add another card for last image page?
+        /*data.add({
+          'image': ,
+          'text': "End of the story",
+        });*/
         isLoading = false; // loading is stopped
       });
     } else {
