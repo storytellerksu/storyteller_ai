@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:storytellerai/services/user_services.dart';
-import 'package:storytellerai/settings/App_support.dart';
-import 'package:storytellerai/settings/about.dart';
-import 'package:storytellerai/settings/legal.dart';
-import 'package:storytellerai/settings/privacy.dart';
+import 'package:storytellerai/pages/home/settings/App_support.dart';
+import 'package:storytellerai/pages/home/settings/about.dart';
+import 'package:storytellerai/pages/home/settings/legal.dart';
+import 'package:storytellerai/pages/home/settings/privacy.dart';
 
 //Setting page has a listView that contains each section of the settings. Each section is clickable
 
