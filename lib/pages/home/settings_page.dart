@@ -19,11 +19,11 @@ class Settings_Page extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 196, 240, 240),
         appBar: AppBar(
           title: Text("Settings"),
           automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Colors.blue[50],
         ),
         body: ListView(
           padding: EdgeInsets.symmetric(vertical: 20),

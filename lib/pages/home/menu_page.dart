@@ -37,43 +37,37 @@ class _Menu_PageState extends State<Menu_Page> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 174, 233, 227),
-        appBar: AppBar(
-          title: Text("Home"),
-          automaticallyImplyLeading: false,
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15)
-              ),
-              elevation: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Story 1", 
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Text("Stuffs here")
-                    
-                    
-                  ],
+          backgroundColor: const Color.fromARGB(255, 168, 239, 240),
+          appBar: AppBar(
+            title: Text("Home"),
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.blue[50],
+          ),
+          body: ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Story 1",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text("Stuffs here")
+                    ],
+                  ),
                 ),
-
-              ),
-            )
-
-            
-          ],
-        )
-        
-      ),
+              )
+            ],
+          )),
     );
   }
 }

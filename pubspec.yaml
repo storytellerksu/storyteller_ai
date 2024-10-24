@@ -73,6 +73,10 @@ flutter:
     - assets/share.jpeg
     - assets/community.webp
     - assets/app_logo.webp
+    - assets/clash.jpeg
+    - assets/meme1.jpeg
+    - assets/meme2.jpeg
+    - assets/meme3.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
