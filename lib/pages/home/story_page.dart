@@ -21,10 +21,21 @@ class _Story_PageState extends State<Story_Page> {
   int _currentPage = 0;
   bool isLoading = false;
 
+  double loadingPercentage = 0;
+  double divideBy = 0;
+
   // 10 images with its corresponding paragraphs
   List<Map<String, String>> data = [];
   // images
   List<String> images = [];
+
+  updateLoadingPercentage(double divideBy) {
+    print("Storypart length: ${storyParts.length}");
+    print("Increasing loading by: $divideBy");
+    setState(() {
+      loadingPercentage += divideBy;
+    });
+  }
 
   splitStory(String inputText) {
     // Split the text using the regex.
@@ -37,7 +48,8 @@ class _Story_PageState extends State<Story_Page> {
   getStory(String storyInput) async {
     images = [];
     setState(() {
-      isLoading = true; // loading started
+      isLoading = true;
+      loadingPercentage = 0; // loading started
     });
     final result =
         await FirebaseFunctions.instance.httpsCallable("generateText").call(
@@ -50,16 +62,14 @@ class _Story_PageState extends State<Story_Page> {
       storyText = result.data["text"] as String;
       print(storyText);
       splitStory(storyText);
-      for (int i = 0; i < storyParts.length; i++) {
-        print(storyParts[i]);
-      }
       // gpt or cloud functions is unintentionally returning an extra blank
       // so i removelast as temporary fix
       storyParts.removeLast();
       for (int i = 0; i < storyParts.length; i++) {
         print(storyParts[i]);
       }
-      for (String part in storyParts) {
+      double divideBy = 100 / storyParts.length;
+      /*for (String part in storyParts) {
         final imageResult = await FirebaseFunctions.instance
             .httpsCallable("generateImage")
             .call(
@@ -70,7 +80,30 @@ class _Story_PageState extends State<Story_Page> {
         );
         print(imageResult.data["text"]);
         images.add(imageResult.data["text"]);
+        updateLoadingPercentage(divideBy);
+        print('loadingPercentage updated to $loadingPercentage');
+      }*/
+
+      List<Future<void>> futures = [];
+      // **Added: Create a list to hold all futures**
+
+      for (String part in storyParts) {
+        // **Changed: Add each future to the list instead of awaiting immediately**
+        futures.add(
+            FirebaseFunctions.instance.httpsCallable("generateImage").call({
+          "text": part,
+          "push": true,
+        }).then((imageResult) {
+          // **Added: Handle the result when the future completes**
+          print(imageResult.data["text"]);
+          images.add(imageResult.data["text"]);
+          updateLoadingPercentage(divideBy);
+          print('loadingPercentage updated to $loadingPercentage');
+        }));
       }
+
+      // **Added: Wait for all futures to complete**
+      await Future.wait(futures);
 
       /*for (int i = 0; i < images.length; i++) {
         print(images[i]);
@@ -101,12 +134,12 @@ class _Story_PageState extends State<Story_Page> {
   }
 
   // Event handler for key press
-  void handleKeyPress(RawKeyEvent event) {
+  /*void handleKeyPress(RawKeyEvent event) {
     if (event.isKeyPressed(LogicalKeyboardKey.enter) &&
         globalKey.currentState!.validate()) {
       getStory(storyInput);
     }
-  }
+  }*/
 
 //Back page private method
   void _goToPreviousPage() {
@@ -136,12 +169,12 @@ class _Story_PageState extends State<Story_Page> {
         title: Text('Create',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Colors.blue[50],
         elevation: 0,
       ),
       body: RawKeyboardListener(
         focusNode: FocusNode(),
-        onKey: handleKeyPress, //check if key is pressed
+        //onKey: handleKeyPress, //check if key is pressed
         child: Form(
           key: globalKey,
           child: Padding(
@@ -205,7 +238,7 @@ class _Story_PageState extends State<Story_Page> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Generating story...",
+                          "Generating story... ${loadingPercentage.toStringAsFixed(0)}%",
                           style: TextStyle(fontSize: 18, color: Colors.black54),
                         ),
                       ],
