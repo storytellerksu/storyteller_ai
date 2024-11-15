@@ -80,5 +80,16 @@ def generate2(inputText):
           )
     return response2.data[0].url
   except Exception as e:
-      print(f"Error generating image for sentence '{inputText}': {str(e)}")
+    print(f"Error generating image for sentence '{inputText}': {str(e)}, now trying dalle-3")
+    try:
+      response3 = client.images.generate(
+      model="dall-e-3",
+                prompt=inputText,
+                size="1024x1024",
+                quality="standard",
+                n=1,
+            )
+      return response3.data[0].url
+    except Exception as ee:
+      print(f"Error generating image for sentence '{inputText}': {str(ee)}")
       return "https://dummyimage.com/300"
