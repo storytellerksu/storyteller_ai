@@ -1,4 +1,4 @@
-# Storyteller AI App - Documentation I LIVE UNDER A ROCK
+# Storyteller AI App - Documentation
 
 ## Project Overview
 The **Storyteller AI App** is designed to provide users with an immersive storytelling experience by generating personalized stories with accompanying visuals and audio. The application leverages the OpenAI API to create story responses and images based on user input. Once the story and visuals are generated, the app combines them into an MP4 video using a text-to-speech API to narrate the story. Users can save, delete, or share the final video directly from the app.
